@@ -137,13 +137,13 @@ loss = mse(y_placeholder, model)
 
 
 # ### Train
-EPOCH = 5
+EPOCH = 10
 X_train, X_test, Y_train, Y_test = cross_validation.train_test_split(X, Y, train_size=0.8)
 dataset = Dataset(X_train, Y_train)
 with tf.Session() as session:
     start_time = time.time()
     session.run(tf.initialize_all_variables())
-    train_step = tf.train.GradientDescentOptimizer(5e-5).minimize(loss)
+    train_step = tf.train.GradientDescentOptimizer(5e-4).minimize(loss)
     last_epoch = -1
     while dataset.epoch_completed() < EPOCH:
         (batch_x, batch_y) = dataset.next_batch(20)
